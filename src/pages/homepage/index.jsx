@@ -3,10 +3,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 const Homepage = () => {
-    const [coordinates, setCoordinates] = useState({});
+    const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
     const [error, setError] = useState(false)
-
-    useEffect(() => { getWeather() }, [coordinates])
 
     const getCoordinates = async ({ street, city, state, zipcode }) => {
         const streetName = street.replace(" ", "+")
@@ -16,15 +14,33 @@ const Homepage = () => {
             const res = await axios.get(url);
             const data = await res.data.result.addressMatches[0];
             setCoordinates(data.coordinates)
+            getGrid(data.coordinates)
         }
         catch (err) {
             console.log(err)
             setError(true);
         }
     }
-
-    const getWeather = () => {
-
+    const getGrid = async (coordinates) => {
+        const url = `https://api.weather.gov/points/${coordinates.y},${coordinates.x}`
+        try {
+            const res = await axios.get(url);
+            const forecastUrl = await res.data.properties.forecast;
+            getWeather(forecastUrl)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    const getWeather = async (forecastUrl) => {
+        try {
+            const res = await axios.get(forecastUrl);
+            const data = await res.data.properties.periods
+            console.log(data)
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
     return <div>
