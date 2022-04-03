@@ -3,7 +3,7 @@ import states from "../../helpers/states.json"
 
 
 import { useForm } from "react-hook-form"
-const Form = () => {
+const Form = ({ getCoordinates }) => {
     const [zipcode, setZipCode] = useState("");
 
     const { register, handleSubmit, formState: { errors }
@@ -23,6 +23,7 @@ const Form = () => {
 
     return <form onSubmit={handleSubmit((data) => {
         console.log(data)
+        getCoordinates(data)
     })}>
         <div>
             <input type="text" {...register("street", { required: "This field is Required" })} placeholder="Street" />
