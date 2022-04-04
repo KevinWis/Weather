@@ -1,7 +1,7 @@
 import Form from "../../components/form"
 import Forecast from "../../components/forecast"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { OuterContainer } from "./style"
 
 const Homepage = () => {
@@ -25,6 +25,9 @@ const Homepage = () => {
             setError(true);
         }
     }
+    useEffect(() => {
+        getBackgroundImage();
+    }, [location])
 
     const getGrid = async (coordinates) => {
         const url = `https://api.weather.gov/points/${coordinates.y},${coordinates.x}`
@@ -43,7 +46,6 @@ const Homepage = () => {
             const res = await axios.get(forecastUrl);
             const data = await res.data.properties.periods
             setForecast(data)
-            getBackgroundImage();
         }
         catch (err) {
             setError(true);
