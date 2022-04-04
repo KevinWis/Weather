@@ -22,7 +22,6 @@ const Form = ({ getCoordinates }) => {
     }
 
     return <FormContainer onSubmit={handleSubmit((data) => {
-        console.log(data)
         getCoordinates(data)
     })}>
         <div>

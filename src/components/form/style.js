@@ -7,6 +7,8 @@ export const FormContainer = styled.form`
     flex-direction: column;
 
     justify-content: center;
+    
+    padding: 1rem 2rem;
 
     @media(min-width: 768px) {
         width: 35%;
@@ -26,7 +28,6 @@ const inputStyles = `
     width:100%;
     margin:1rem auto;
     padding: .5rem .5rem 0 .5rem;
-    box-sizing: border-box;
 `
 export const Input = styled.input`
     ${inputStyles}

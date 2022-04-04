@@ -62,7 +62,7 @@ const Homepage = () => {
 
     return <OuterContainer>
         <Form getCoordinates={getCoordinates} />
-        <Forecast forecast={forecast} location={location} error={error} backgroundImage={backgroundImage} />
+        <Forecast forecast={forecast} location={location} backgroundImage={backgroundImage} error={error} />
     </OuterContainer>
 }
 
