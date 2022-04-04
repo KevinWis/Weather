@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { IoMdPartlySunny, IoMdSunny, IoMdRainy, IoMdThunderstorm, IoMdCloudy, IoMdSnow } from "react-icons/io"
 
@@ -41,7 +42,6 @@ const Forecast = ({ forecast, location, error }) => {
 
         return <IoMdSunny />;
     }
-
     const hours = clock.getHours();
     const minutes = clock.getMinutes();
     const seconds = clock.getSeconds();
@@ -89,10 +89,12 @@ const Forecast = ({ forecast, location, error }) => {
         </div>
         }
         {!error && !filteredForecast &&
-            <div></div>
+            <div>Fill the form to get the forecast for the next 7 days! </div>
         }
         {error &&
-            <div></div>
+            <div>uh oh something went wrong.
+                Please certify that the address you added exists and it's correctly written
+            </div>
         }
     </div>
 }

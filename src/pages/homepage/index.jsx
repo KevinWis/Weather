@@ -7,6 +7,7 @@ const Homepage = () => {
     const [error, setError] = useState(false);
     const [forecast, setForecast] = useState()
     const [location, setLocation] = useState("");
+    const [backgroundImage, setBackgroundImage] = useState("");
 
     const getCoordinates = async ({ street, city, state, zipcode }) => {
         setLocation({ city, state });
@@ -17,9 +18,9 @@ const Homepage = () => {
             const res = await axios.get(url);
             const data = await res.data.result.addressMatches[0];
             getGrid(data.coordinates)
+            setError(false);
         }
         catch (err) {
-            console.log(err)
             setError(true);
         }
     }
@@ -32,7 +33,7 @@ const Homepage = () => {
             getWeather(forecastUrl)
         }
         catch (err) {
-            console.log(err)
+            setError(true);
         }
     }
 
@@ -41,16 +42,26 @@ const Homepage = () => {
             const res = await axios.get(forecastUrl);
             const data = await res.data.properties.periods
             setForecast(data)
-            console.log(data)
+            getBackgroundImage();
         }
         catch (err) {
+            setError(true);
+        }
+    }
+
+    const getBackgroundImage = async () => {
+        try {
+            const res = await axios.get(`https://api.unsplash.com/search/photos?page=1&query=${location.city}-${location.state}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
+            const image = await res.data.results[0].urls.regular;
+            setBackgroundImage(image);
+        } catch (err) {
             console.log(err)
         }
     }
 
     return <div>
         <Form getCoordinates={getCoordinates} />
-        <Forecast forecast={forecast} location={location} error={error} />
+        <Forecast forecast={forecast} location={location} error={error} backgroundImage={backgroundImage} />
     </div>
 }
 
