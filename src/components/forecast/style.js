@@ -20,7 +20,12 @@ export const ForecastContainer = styled.div`
         width:100%;
         height:100%;
         background-color: rgba(0,0,0,0.30);
-
+        img{
+            display: flex;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
     }
 
     @media(min-width: 768px) {
@@ -162,4 +167,14 @@ export const Message = styled.p`
     margin: 2rem auto;
     height: 100%;
     font-weight: 600;
+    span{
+        margin-top: 1rem;
+        font-size:.85rem ;
+    }
+    a{
+        text-decoration: underline;
+        color: white;
+    }
+
+    padding:0 1rem;
 `;

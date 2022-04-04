@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { IoMdPartlySunny, IoMdSunny, IoMdRainy, IoMdThunderstorm, IoMdCloudy, IoMdSnow } from "react-icons/io"
 import { ForecastContainer, Message, UpperContainer, LowerContainer, PrimaryDate, DatesContainer, SecondaryDate } from "./style"
+import loadingImage from "../../images/loading-buffering.svg"
 
-const Forecast = ({ forecast, location, backgroundImage, error }) => {
+const Forecast = ({ forecast, location, backgroundImage, loading, error }) => {
     const [clock, setClock] = useState(new Date());
 
     useEffect(() => {
@@ -48,7 +49,10 @@ const Forecast = ({ forecast, location, backgroundImage, error }) => {
 
     return <ForecastContainer backgroundImage={backgroundImage}>
         <div className="innerContainer">
-            {filteredForecast && !error && <div className="inner container">
+            {loading &&
+                <img src={loadingImage} alt="loading gif" />
+            }
+            {filteredForecast && !error && !loading && <div className="inner container">
                 {location && <UpperContainer>
                     <p className="location">
                         <span>{location.city}, </span>
@@ -93,16 +97,16 @@ const Forecast = ({ forecast, location, backgroundImage, error }) => {
                 </LowerContainer>
             </div>
             }
-            {!error && !filteredForecast &&
+            {!error && !filteredForecast && !loading &&
                 <Message>Fill the form to get the forecast! </Message>
             }
             {error &&
                 <Message>uh oh something went wrong.
                     Please certify that the address you added exists.
-                    <p>
-                        If you're in the development server, You might need to request access to
-                        <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS-Anywhere</a>
-                    </p>
+                    <span>
+                        If you're in the development server and outside the US, You might need to request access to <span> </span>
+                        <a href="https://cors-anywhere.herokuapp.com/corsdemo" rel="noreferrer" target="_blank" >CORS-Anywhere</a>
+                    </span>
                 </Message>
             }
 

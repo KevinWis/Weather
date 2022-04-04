@@ -22,7 +22,7 @@ const Form = ({ getCoordinates }) => {
     }
 
     return <FormContainer onSubmit={handleSubmit((data) => {
-        getCoordinates(data)
+        getCoordinates(data);
     })}>
         <div>
             <Input type="text" {...register("street", { required: "This field is Required" })} placeholder="Street" />

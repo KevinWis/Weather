@@ -6,14 +6,18 @@ import { OuterContainer } from "./style"
 
 const Homepage = () => {
     const [error, setError] = useState(false);
-    const [forecast, setForecast] = useState()
+    const [loading, setLoading] = useState(false);
+    const [forecast, setForecast] = useState();
     const [location, setLocation] = useState("");
     const [backgroundImage, setBackgroundImage] = useState("");
 
+
     const getCoordinates = async ({ street, city, state, zipcode }) => {
+        setLoading(true);
+        setError(false);
         setLocation({ city, state });
-        const streetName = street.replaceAll(" ", "+")
-        const cityName = city.replaceAll(" ", "+")
+        const streetName = street.replaceAll(" ", "+");
+        const cityName = city.replaceAll(" ", "+");
         const url = `https://cors-anywhere.herokuapp.com/https://geocoding.geo.census.gov/geocoder/locations/address?street=${streetName}&city=${cityName}&state=${state}&zip=${zipcode}&benchmark=Public_AR_Census2020&format=json`
         const headers = {
             "X-Requested-With": "XMLHttpRequest"
@@ -22,10 +26,10 @@ const Homepage = () => {
             const res = await axios.get(url, headers);
             const data = await res.data.result.addressMatches[0];
             getGrid(data.coordinates)
-            setError(false);
         }
         catch (err) {
             setError(true);
+            setLoading(false);
         }
     }
     useEffect(() => {
@@ -37,22 +41,24 @@ const Homepage = () => {
         try {
             const res = await axios.get(url);
             const forecastUrl = await res.data.properties.forecast;
-            getWeather(forecastUrl)
+            getWeather(forecastUrl);
         }
         catch (err) {
             setError(true);
+            setLoading(false);
         }
     }
 
     const getWeather = async (forecastUrl) => {
         try {
             const res = await axios.get(forecastUrl);
-            const data = await res.data.properties.periods
-            setForecast(data)
+            const data = await res.data.properties.periods;
+            setForecast(data);
         }
         catch (err) {
             setError(true);
         }
+        setLoading(false);
     }
 
     const getBackgroundImage = async () => {
@@ -61,13 +67,13 @@ const Homepage = () => {
             const image = await res.data.results[0].urls.regular;
             setBackgroundImage(image);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 
     return <OuterContainer>
         <Form getCoordinates={getCoordinates} />
-        <Forecast forecast={forecast} location={location} backgroundImage={backgroundImage} error={error} />
+        <Forecast forecast={forecast} location={location} backgroundImage={backgroundImage} loading={loading} error={error} />
     </OuterContainer>
 }
 
