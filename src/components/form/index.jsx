@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
 import states from "../../helpers/states.json"
 import { Error, Input, Select, Submit, FormContainer } from "./style"
 
