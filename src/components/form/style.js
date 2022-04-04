@@ -1,11 +1,21 @@
 import styled from "styled-components"
 
-export const FormContainer = styled.Form`
+export const FormContainer = styled.form`
     width: 100%;
 
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
     @media(min-width: 768px) {
-        width: 100%;
+        width: 35%;
+
+        padding: 2rem;
+        box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.25);
+        height: 100%;
     }
+
 `;
 const inputStyles = `
     font-family:'Poppins', Tahoma, Geneva, Verdana, sans-serif;

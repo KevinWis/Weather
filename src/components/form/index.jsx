@@ -55,7 +55,7 @@ const Form = ({ getCoordinates }) => {
 
             {errors.zipcode && <Error>{errors.zipcode.message}</Error>}
         </div>
-        <Submit type="submit" />
+        <Submit type="submit" value="Get forecast" />
 
     </FormContainer>
 }
