@@ -10,6 +10,15 @@ export const FormContainer = styled.form`
     
     padding: 1rem 2rem;
 
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+
     @media(min-width: 768px) {
         width: 35%;
 
@@ -28,6 +37,7 @@ const inputStyles = `
     width:100%;
     margin:1rem auto;
     padding: .5rem .5rem 0 .5rem;
+
 `
 export const Input = styled.input`
     ${inputStyles}

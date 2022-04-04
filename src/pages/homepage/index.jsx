@@ -12,13 +12,13 @@ const Homepage = () => {
     const [backgroundImage, setBackgroundImage] = useState("");
 
 
-    const getCoordinates = async ({ street, city, state, zipcode }) => {
+    const getCoordinates = async ({ address, city, state, zipcode }) => {
         setLoading(true);
         setError(false);
         setLocation({ city, state });
-        const streetName = street.replaceAll(" ", "+");
+        const addressName = address.replaceAll(" ", "+");
         const cityName = city.replaceAll(" ", "+");
-        const url = `https://cors-anywhere.herokuapp.com/https://geocoding.geo.census.gov/geocoder/locations/address?street=${streetName}&city=${cityName}&state=${state}&zip=${zipcode}&benchmark=Public_AR_Census2020&format=json`
+        const url = `https://cors-anywhere.herokuapp.com/https://geocoding.geo.census.gov/geocoder/locations/address?street=${addressName}&city=${cityName}&state=${state}&zip=${zipcode}&benchmark=Public_AR_Census2020&format=json`
         const headers = {
             "X-Requested-With": "XMLHttpRequest"
         }

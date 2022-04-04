@@ -9,7 +9,7 @@ const Form = ({ getCoordinates }) => {
     const { register, handleSubmit, formState: { errors }
     } = useForm({
         defaultValues: {
-            street: "",
+            address: "",
             city: "",
             state: "",
             zipcode: "",
@@ -25,13 +25,6 @@ const Form = ({ getCoordinates }) => {
         getCoordinates(data);
     })}>
         <div>
-            <Input type="text" {...register("street", { required: "This field is Required" })} placeholder="Street" />
-            {errors.street && <Error>{errors.street.message}</Error>}
-            <Input type="text" {...register("city", { required: "This field is Required" })} placeholder="City" />
-            {errors.city && <Error>{errors.city.message}</Error>}
-        </div>
-
-        <div>
             <Select {...register("state", { required: "This field is Required" })}>
                 <option value="">Select a state</option>
                 {
@@ -42,7 +35,11 @@ const Form = ({ getCoordinates }) => {
                 }
             </Select>
             {errors.state && <Error>{errors.state.message}</Error>}
+            <Input type="text" {...register("city", { required: "This field is Required" })} placeholder="City" />
+            {errors.city && <Error>{errors.city.message}</Error>}
+        </div>
 
+        <div>
             <Input type="number"  {...register("zipcode", {
                 required: "This is a required field",
                 minLength: { value: 5, message: "Please make sure you filled your 5-digit zip-code correctly" },
@@ -53,6 +50,8 @@ const Form = ({ getCoordinates }) => {
                 placeholder="Zip code" />
 
             {errors.zipcode && <Error>{errors.zipcode.message}</Error>}
+            <Input type="text" {...register("address", { required: "This field is Required" })} placeholder="Address" />
+            {errors.address && <Error>{errors.address.message}</Error>}
         </div>
         <Submit type="submit" value="Get forecast" />
 
