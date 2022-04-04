@@ -7,14 +7,17 @@ export const OuterContainer = styled.div`
     align-items:center;
     justify-content: flex-start;
 
-    max-width:1680px;
     margin: 0 auto;
-    min-height: calc(100vh - 2rem);
+    min-height: 100vh;
+
+    background: #0F2027;  
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
 
     @media(min-width: 768px) {
         flex-direction:row;
         justify-content: space-between;
-        height: calc(100vh);
+        height: 100vh;
         padding: 0 2rem;
     }
 `;

@@ -21,9 +21,7 @@ export const FormContainer = styled.form`
 
     @media(min-width: 768px) {
         width: 35%;
-
         padding: 2rem;
-        box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.25);
         height: 100%;
     }
 
@@ -37,6 +35,8 @@ const inputStyles = `
     width:100%;
     margin:1rem auto;
     padding: .5rem .5rem 0 .5rem;
+
+    border-radius:0.5rem;
 
 `
 export const Input = styled.input`
