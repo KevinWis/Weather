@@ -99,6 +99,10 @@ const Forecast = ({ forecast, location, backgroundImage, error }) => {
             {error &&
                 <Message>uh oh something went wrong.
                     Please certify that the address you added exists.
+                    <p>
+                        If you're in the development server, You might need to request access to
+                        <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS-Anywhere</a>
+                    </p>
                 </Message>
             }
 
