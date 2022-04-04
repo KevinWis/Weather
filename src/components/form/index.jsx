@@ -53,7 +53,7 @@ const Form = ({ getCoordinates }) => {
             <Input type="text" {...register("address", { required: "This field is Required" })} placeholder="Address" />
             {errors.address && <Error>{errors.address.message}</Error>}
         </div>
-        <Submit type="submit" value="Get forecast" />
+        <Submit>Get Forecast</Submit>
 
     </FormContainer>
 }

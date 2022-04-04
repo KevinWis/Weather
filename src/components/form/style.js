@@ -34,7 +34,7 @@ const inputStyles = `
 
     width:100%;
     margin:1rem auto;
-    padding: .5rem .5rem 0 .5rem;
+    padding: .5rem .8rem;
 
     border-radius:0.5rem;
 
@@ -45,18 +45,20 @@ export const Input = styled.input`
 export const Select = styled.select`
     ${inputStyles}
 `;
-export const Submit = styled.input`
+export const Submit = styled.button`
     ${inputStyles}
     font-weight: 500;
 
     border: none;
-    background: #FDFBFB;
+    background-color: #007bff;
     box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.25);
     border-radius: .5rem;
     transition: 0.3s ease-in-out;
+    padding: .5rem .8rem;
 
+    color: white;
     :hover{
-        background: #f1eaee;
+        background: #0050d5;
     }
 `;
 
