@@ -22,13 +22,14 @@ const Forecast = ({ forecast, location, backgroundImage, error }) => {
     }
 
     const filteredForecast = forecast?.filter((day) => {
-        if (!forecast[1].name.toLowerCase().includes("night")) {
+        if (forecast[1].name.toLowerCase().includes("night")) {
             return (day.number % 2 === 1) && day.number > 1;
         }
         else {
             return (day.number % 2 === 0) && day.number > 1 && day.number < 14;
         }
     })
+    console.log(filteredForecast)
 
     const getIcon = (weatherName) => {
         const name = weatherName.toLowerCase();
