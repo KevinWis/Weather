@@ -23,6 +23,7 @@ const Homepage = () => {
             setError(true);
         }
     }
+
     const getGrid = async (coordinates) => {
         const url = `https://api.weather.gov/points/${coordinates.y},${coordinates.x}`
         try {
@@ -34,6 +35,7 @@ const Homepage = () => {
             console.log(err)
         }
     }
+
     const getWeather = async (forecastUrl) => {
         try {
             const res = await axios.get(forecastUrl);
