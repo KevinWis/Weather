@@ -8,7 +8,6 @@ export const ForecastContainer = styled.div`
 
     width:100%;
 
-    
     background-image: ${props => props.backgroundImage ? `url(${props.backgroundImage})` : "white"};
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,9 +29,9 @@ export const ForecastContainer = styled.div`
 
     @media(min-width: 768px) {
         width:65%;
-        border-radius: 0 2rem 2rem 0;
+        border-radius:2rem;
         .innerContainer{
-            border-radius: 0 2rem 2rem 0;
+            border-radius:2rem;
         }
     }
 `;
@@ -61,7 +60,7 @@ export const LowerContainer = styled.div`
         max-width: 768px;
     }
     @media(min-width: 768px) {
-        border-radius: 0 0 2rem 0;
+        border-radius: 0 0 2rem 2rem;
     }
 `
 
@@ -76,6 +75,7 @@ export const PrimaryDate = styled.div`
     
     margin:0 auto;
     padding: 1rem 0;
+
 
     svg{
         font-size: 8rem;
