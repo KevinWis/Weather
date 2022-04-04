@@ -1,7 +1,8 @@
 import Form from "../../components/form"
 import Forecast from "../../components/forecast"
 import axios from "axios"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { OuterContainer } from "./style"
 
 const Homepage = () => {
     const [error, setError] = useState(false);
@@ -59,10 +60,10 @@ const Homepage = () => {
         }
     }
 
-    return <div>
+    return <OuterContainer>
         <Form getCoordinates={getCoordinates} />
         <Forecast forecast={forecast} location={location} error={error} backgroundImage={backgroundImage} />
-    </div>
+    </OuterContainer>
 }
 
 export default Homepage;
