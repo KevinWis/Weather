@@ -103,6 +103,7 @@ const Forecast = ({ forecast, location, backgroundImage, loading, error }) => {
             {error &&
                 <Message>uh oh something went wrong.
                     Please certify that the address you added exists and has both number and street name.
+                    <br />
                     <span>
                         If you're in the development server and outside the US, You might need to request access to <span> </span>
                         <a href="https://cors-anywhere.herokuapp.com/corsdemo" rel="noreferrer" target="_blank" >CORS-Anywhere</a>
