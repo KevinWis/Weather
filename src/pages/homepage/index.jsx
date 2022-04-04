@@ -12,11 +12,12 @@ const Homepage = () => {
 
     const getCoordinates = async ({ street, city, state, zipcode }) => {
         setLocation({ city, state });
-        const streetName = street.replace(" ", "+")
-        const cityName = city.replace(" ", "+")
+        const streetName = street.replaceAll(" ", "+")
+        const cityName = city.replaceAll(" ", "+")
         const url = `https://geocoding.geo.census.gov/geocoder/locations/address?street=${streetName}&city=${cityName}&state=${state}&zip=${zipcode}&benchmark=Public_AR_Census2020&format=json`
         try {
             const res = await axios.get(url);
+            console.log(res)
             const data = await res.data.result.addressMatches[0];
             getGrid(data.coordinates)
             setError(false);
