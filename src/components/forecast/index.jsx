@@ -29,7 +29,6 @@ const Forecast = ({ forecast, location, backgroundImage, error }) => {
             return (day.number % 2 === 0) && day.number > 1 && day.number < 14;
         }
     })
-    console.log(filteredForecast)
 
     const getIcon = (weatherName) => {
         const name = weatherName.toLowerCase();
