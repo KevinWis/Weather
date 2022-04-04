@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import states from "../../helpers/states.json"
-
+import { Error, Input, Select, Submit, FormContainer } from "./style"
 
 import { useForm } from "react-hook-form"
 const Form = ({ getCoordinates }) => {
@@ -21,19 +21,19 @@ const Form = ({ getCoordinates }) => {
         value.length > 5 ? setZipCode(value.slice(0, 5)) : setZipCode(value);
     }
 
-    return <form onSubmit={handleSubmit((data) => {
+    return <FormContainer onSubmit={handleSubmit((data) => {
         console.log(data)
         getCoordinates(data)
     })}>
         <div>
-            <input type="text" {...register("street", { required: "This field is Required" })} placeholder="Street" />
-            {errors.street && <p>{errors.street.message}</p>}
-            <input type="text" {...register("city", { required: "This field is Required" })} placeholder="City" />
-            {errors.city && <p>{errors.city.message}</p>}
+            <Input type="text" {...register("street", { required: "This field is Required" })} placeholder="Street" />
+            {errors.street && <Error>{errors.street.message}</Error>}
+            <Input type="text" {...register("city", { required: "This field is Required" })} placeholder="City" />
+            {errors.city && <Error>{errors.city.message}</Error>}
         </div>
 
         <div>
-            <select {...register("state", { required: "This field is Required" })}>
+            <Select {...register("state", { required: "This field is Required" })}>
                 <option value="">Select a state</option>
                 {
                     states.map((state, index) => {
@@ -41,10 +41,10 @@ const Form = ({ getCoordinates }) => {
                         return <option key={index} value={abbreviation}>{abbreviation}</option>
                     })
                 }
-            </select>
-            {errors.state && <p>{errors.state.message}</p>}
+            </Select>
+            {errors.state && <Error>{errors.state.message}</Error>}
 
-            <input type="number"  {...register("zipcode", {
+            <Input type="number"  {...register("zipcode", {
                 required: "This is a required field",
                 minLength: { value: 5, message: "Please make sure you filled your 5-digit zip-code correctly" },
                 maxLength: { value: 5, message: "Please make sure you have 5 digits in this field" },
@@ -53,11 +53,11 @@ const Form = ({ getCoordinates }) => {
                 onChange={handleSetZipcode}
                 placeholder="Zip code" />
 
-            {errors.zipcode && <p>{errors.zipcode.message}</p>}
+            {errors.zipcode && <Error>{errors.zipcode.message}</Error>}
         </div>
-        <input type="submit" />
+        <Submit type="submit" />
 
-    </form>
+    </FormContainer>
 }
 
 export default Form;
